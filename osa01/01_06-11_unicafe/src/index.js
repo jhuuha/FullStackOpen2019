@@ -4,7 +4,7 @@ import './index.css'
 
 const Button = ({ text, handleClick }) => {
     return (
-        <button onClick={handleClick}>{text}</button>
+        <button className='FeedbackButton' onClick={handleClick}>{text}</button>
     )
 }
 
@@ -20,14 +20,16 @@ const Statistics = ({ good, neutral, bad }) => {
         positive = (good / sum) * 100
 
         return (
-            <div>
-                <Statistic text='hyvä' value={good} unit='' />
-                <Statistic text='neutraali' value={neutral} unit='' />
-                <Statistic text='huono' value={bad} unit='' />
-                <Statistic text='yhteensä' value={sum} unit='' />
-                <Statistic text='keskiarvo' value={average} unit='' />
-                <Statistic text='positiivisia' value={positive} unit='%' />
-            </div>
+            <table>
+                <tbody>
+                    <Statistic text='hyvä' value={good} unit='' />
+                    <Statistic text='neutraali' value={neutral} unit='' />
+                    <Statistic text='huono' value={bad} unit='' />
+                    <Statistic text='yhteensä' value={sum} unit='' />
+                    <Statistic text='keskiarvo' value={average} unit='' />
+                    <Statistic text='positiivisia' value={positive} unit='%' />
+                </tbody>
+            </table>
         )
     }
 
@@ -38,7 +40,10 @@ const Statistics = ({ good, neutral, bad }) => {
 
 const Statistic = ({ text, value, unit }) => {
     return (
-        <div>{text} {value} {unit}</div>
+        <tr>
+            <th className='Statistic'>{text}</th>
+            <th className='Statistic'>{value} {unit}</th>
+        </tr>
     )
 }
 

@@ -13,7 +13,7 @@ code {
     monospace;
 }
 
-Button {
+.FeedbackButton {
   margin: 0px 1px;
   background-color: white;
   border: 1px solid grey;
@@ -21,6 +21,11 @@ Button {
   user-select: none;
 }
 
-Button:hover {
+.FeedbackButton:hover {
   background-color: darkgray;
+}
+
+.Statistic {
+  padding-right: 5px; 
+  text-align: left;
 }
