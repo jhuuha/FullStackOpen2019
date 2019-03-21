@@ -15,20 +15,24 @@ const Statistics = ({ good, neutral, bad }) => {
     let positive = 0
 
     if (sum > 0) {
+
         average = (good * 1 + bad * -1) / sum
         positive = (good / sum) * 100
+
+        return (
+            <div>
+                <Statistic text='hyvä' value={good} unit='' />
+                <Statistic text='neutraali' value={neutral} unit='' />
+                <Statistic text='huono' value={bad} unit='' />
+                <Statistic text='yhteensä' value={sum} unit='' />
+                <Statistic text='keskiarvo' value={average} unit='' />
+                <Statistic text='positiivisia' value={positive} unit='%' />
+            </div>
+        )
     }
 
     return (
-        <div>
-            <h1>statistiikka</h1>
-            <Statistic text='hyvä' value={good} unit='' />
-            <Statistic text='neutraali' value={neutral} unit='' />
-            <Statistic text='huono' value={bad} unit='' />
-            <Statistic text='yhteensä' value={sum} unit='' />
-            <Statistic text='keskiarvo' value={average} unit='' />
-            <Statistic text='positiivisia' value={positive} unit='%' />
-        </div>
+        <h3>Ei yhtään palautetta annettu</h3>
     )
 }
 
@@ -50,6 +54,7 @@ const App = () => {
             <Button text='hyvä' handleClick={() => setGood(good + 1)} />
             <Button text='neutraali' handleClick={() => setNeutral(neutral + 1)} />
             <Button text='huono' handleClick={() => setBad(bad + 1)} />
+            <h1>statistiikka</h1>
             <Statistics good={good} neutral={neutral} bad={bad} />
         </div>
     )
