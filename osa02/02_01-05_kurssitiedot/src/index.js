@@ -28,19 +28,24 @@ const Content = ({ parts }) => {
     )
 }
 
-/*
-const Total = (props) => {
+
+const Total = ({ parts }) => {
+
+    let sum = 0
+    parts.map(part => sum += part.exercises)
+
     return (
-        <p>yhteensä {props.parts[0].exercises + props.parts[1].exercises + props.parts[2].exercises} tehtävää</p>
+        <p>yhteensä {sum} tehtävää</p>
     )
 }
-*/
+
 
 const Course = ({ course }) => {
     return (
         <div>
             <Header name={course.name} />
             <Content parts={course.parts} />
+            <Total parts={course.parts} />
         </div>
     )
 }
