@@ -28,17 +28,14 @@ const Content = ({ parts }) => {
     )
 }
 
-
 const Total = ({ parts }) => {
 
-    let sum = 0
-    parts.map(part => sum += part.exercises)
+    const total = parts.reduce((s, p) => s + p.exercises, 0)
 
     return (
-        <p>yhteensä {sum} tehtävää</p>
+        <p>yhteensä {total} tehtävää</p>
     )
 }
-
 
 const Course = ({ course }) => {
     return (
