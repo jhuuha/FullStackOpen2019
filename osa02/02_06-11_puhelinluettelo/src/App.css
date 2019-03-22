@@ -9,3 +9,7 @@ button {
 button:hover {
   background-color: darkgray;
 }
+
+input {
+  margin: 2px 0px;
+}
