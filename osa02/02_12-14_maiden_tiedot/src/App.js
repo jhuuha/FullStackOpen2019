@@ -7,7 +7,9 @@ import './App.css';
 const App = () => {
 
   const [countries, setCountries] = useState([])
+  const [countryWeather, setCountryWeather] = useState({})
   const [newFilter, setNewFilter] = useState('')
+  const [country, setCountry] = useState('')
 
   useEffect(() => {
     axios
@@ -17,6 +19,16 @@ const App = () => {
       })
   }, [])
 
+  useEffect(() => {
+    if (country !== '') {
+      axios
+        .get(`https://api.apixu.com/v1/current.json?key=1773e405a6544b5bb8475325192303&q=${country}`)
+        .then(response => {
+          setCountryWeather(response.data)
+        })
+    }
+  }, [country])
+
   const handleFilterChange = (event) => {
     setNewFilter(event.target.value)
   }
@@ -24,7 +36,7 @@ const App = () => {
   return (
     <div>
       <Filter newFilter={newFilter} handleFilterChange={handleFilterChange} />
-      <Countries countries={countries} newFilter={newFilter} setNewFilter={setNewFilter} />
+      <Countries countries={countries} newFilter={newFilter} setNewFilter={setNewFilter} setCountry={setCountry} countryWeather={countryWeather} />
     </div>
   )
 }
