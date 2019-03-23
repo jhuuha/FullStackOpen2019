@@ -40,6 +40,16 @@ const App = () => {
     }
   }
 
+  const deletePerson = id => {
+    if (window.confirm(`Poistetaanko ${persons.find(n => n.id === id).name}`)) {
+      personService
+        .del(id)
+        .then(response => {
+          setPersons(persons.filter(n => n.id !== id))
+        })
+    }
+  }
+
   const handleNameChange = (event) => {
     setNewName(event.target.value)
   }
@@ -65,7 +75,7 @@ const App = () => {
         handleNumberChange={handleNumberChange}
       />
       <h3>Numerot</h3>
-      <Persons persons={persons} newFilter={newFilter} />
+      <Persons persons={persons} newFilter={newFilter} handleDelete={deletePerson} />
     </div>
   )
 
