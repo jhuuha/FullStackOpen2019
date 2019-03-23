@@ -12,6 +12,7 @@ const App = () => {
   const [newNumber, setNewNumber] = useState('')
   const [newFilter, setNewFilter] = useState('')
   const [notificationMessage, setNotificationMessage] = useState(null)
+  const [errorMessage, setErrorMessage] = useState(null)
 
   useEffect(() => {
     personService
@@ -85,6 +86,15 @@ const App = () => {
           setNotificationMessage(null)
         }, 2000)
       })
+      .catch(error => {
+        setErrorMessage(
+          `Virhe: henkilö '${person.name}' poistettu palvelimelta`
+        )
+        setTimeout(() => {
+          setErrorMessage(null)
+        }, 4000)
+        setPersons(persons.filter(n => n.id !== id))
+      })
   }
 
   const handleNameChange = (event) => {
@@ -102,7 +112,8 @@ const App = () => {
   return (
     <div>
       <h2>Puhelinluettelo</h2>
-      <Notification message={notificationMessage} />
+      <Notification message={notificationMessage} color='darkgreen' />
+      <Notification message={errorMessage} color='red' />
       <Filter newFilter={newFilter} handleFilterChange={handleFilterChange} />
       <h3>lisää uusi</h3>
       <PersonForm

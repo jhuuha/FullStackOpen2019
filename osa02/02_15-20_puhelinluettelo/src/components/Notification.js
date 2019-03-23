@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Notification = ({ message }) => {
+const Notification = ({ message, color }) => {
     const notificationStyle = {
         fontSize: '20px',
         fontWeight: '700',
-        color: 'darkgreen',
-        border: '2px solid darkgreen',
+        color: `${color}`,
+        border: `2px solid ${color}`,
         backgroundColor: 'lightgray',
         marginBottom: '20px',
         padding: '10px',
