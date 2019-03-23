@@ -1,0 +1,8 @@
+.flag {
+    border: 1px solid black;
+    padding: 0px;
+    display: block;
+    max-height:100px;
+    width: auto;
+    height: auto;
+  }
