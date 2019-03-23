@@ -24,6 +24,11 @@
       "name": "Timo Äes",
       "number": "123456",
       "id": 5
+    },
+    {
+      "name": "Jussi Peltomies",
+      "number": "765432",
+      "id": 6
     }
   ]
 }
