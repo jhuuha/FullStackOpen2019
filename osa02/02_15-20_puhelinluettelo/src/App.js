@@ -4,12 +4,14 @@ import Filter from './components/Filter'
 import PersonForm from './components/PersonForm'
 import Persons from './components/Persons'
 import personService from './services/persons'
+import Notification from './components/Notification'
 
 const App = () => {
   const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [newFilter, setNewFilter] = useState('')
+  const [notificationMessage, setNotificationMessage] = useState(null)
 
   useEffect(() => {
     personService
@@ -33,6 +35,12 @@ const App = () => {
             setPersons(persons.concat(returnedPerson))
             setNewName('')
             setNewNumber('')
+            setNotificationMessage(
+              `Lisättiin ${returnedPerson.name}`
+            )
+            setTimeout(() => {
+              setNotificationMessage(null)
+            }, 2000)
           })
       } else {
         if (window.confirm(`${newName} on jo luettelossa, korvataanko vanha numero uudella?`)) {
@@ -43,13 +51,20 @@ const App = () => {
   }
 
   const deletePerson = id => {
-    if (window.confirm(`Poistetaanko ${persons.find(n => n.id === id).name}`)) {
+    const person = persons.find(n => n.id === id)
+    if (window.confirm(`Poistetaanko ${person.name}`)) {
       personService
         .del(id)
         .then(response => {
           setPersons(persons.filter(n => n.id !== id))
           setNewName('')
           setNewNumber('')
+          setNotificationMessage(
+            `Poistettiin ${person.name}`
+          )
+          setTimeout(() => {
+            setNotificationMessage(null)
+          }, 2000)
         })
     }
   }
@@ -61,6 +76,14 @@ const App = () => {
       .update(id, changedPerson)
       .then(returnedPerson => {
         setPersons(persons.map(person => person.id !== id ? person : returnedPerson))
+        setNewName('')
+        setNewNumber('')
+        setNotificationMessage(
+          `Henkilölle ${returnedPerson.name} päivitettiin numero ${returnedPerson.number}`
+        )
+        setTimeout(() => {
+          setNotificationMessage(null)
+        }, 2000)
       })
   }
 
@@ -79,6 +102,7 @@ const App = () => {
   return (
     <div>
       <h2>Puhelinluettelo</h2>
+      <Notification message={notificationMessage} />
       <Filter newFilter={newFilter} handleFilterChange={handleFilterChange} />
       <h3>lisää uusi</h3>
       <PersonForm

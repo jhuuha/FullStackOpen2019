@@ -27,13 +27,18 @@
     },
     {
       "name": "Jussi",
-      "number": "123",
+      "number": "345643",
       "id": 7
     },
     {
-      "name": "Timo",
+      "name": "Liisa",
       "number": "98765432",
-      "id": 8
+      "id": 10
+    },
+    {
+      "name": "Simo Laaju",
+      "number": "9876543",
+      "id": 11
     }
   ]
 }
