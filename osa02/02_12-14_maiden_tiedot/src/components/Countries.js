@@ -1,7 +1,8 @@
 import React from 'react'
 import CountryInformation from './CountryInformation'
+import CountryNames from './CountryNames'
 
-const Countries = ({ countries, newFilter }) => {
+const Countries = ({ countries, newFilter, setNewFilter }) => {
 
     const countriesToShow = (newFilter.length > 0)
         ? countries.filter(country => country.name.toLowerCase().includes(newFilter.toLowerCase()))
@@ -9,11 +10,8 @@ const Countries = ({ countries, newFilter }) => {
 
     if (countriesToShow.length > 1 && countriesToShow.length <= 10) {
         //2-10 maiden nimet
-        const rows = () => countriesToShow.map(country =>
-            <div key={country.name}>{country.name}</div>
-        )
         return (
-            rows()
+            <CountryNames countries={countriesToShow} setNewFilter={setNewFilter} />
         )
     }
 
