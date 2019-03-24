@@ -1,0 +1,15 @@
+button {
+  margin: 0px 1px;
+  background-color: white;
+  border: 1px solid grey;
+  border-radius: 5px;
+  user-select: none;
+}
+
+button:hover {
+  background-color: darkgray;
+}
+
+input {
+  margin: 2px 0px;
+}
