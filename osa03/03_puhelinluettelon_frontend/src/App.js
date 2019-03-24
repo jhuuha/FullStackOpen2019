@@ -24,37 +24,36 @@ const App = () => {
 
   const addPerson = (event) => {
     event.preventDefault()
-    if (newName.length > 0 && newNumber.toString().length > 0) {
-      if (!(persons.some(person => person['name'] === newName))) {
-        const personObject = {
-          name: newName,
-          number: newNumber
-        }
-        personService
-          .create(personObject)
-          .then(returnedPerson => {
-            setPersons(persons.concat(returnedPerson))
-            setNewName('')
-            setNewNumber('')
-            setNotificationMessage(
-              `Lisättiin ${returnedPerson.name}`
-            )
-            setTimeout(() => {
-              setNotificationMessage(null)
-            }, 2000)
-          })
-      } else {
-        if (window.confirm(`${newName} on jo luettelossa, korvataanko vanha numero uudella?`)) {
-          updatePerson(persons.find(n => n.name === newName).id)
-        }
+    if (!(persons.some(person => person['name'] === newName))) {
+      const personObject = {
+        name: newName,
+        number: newNumber
       }
+      personService
+        .create(personObject)
+        .then(returnedPerson => {
+          setPersons(persons.concat(returnedPerson))
+          setNewName('')
+          setNewNumber('')
+          setNotificationMessage(
+            `Lisättiin ${returnedPerson.name}`
+          )
+          setTimeout(() => {
+            setNotificationMessage(null)
+          }, 2000)
+        })
+        .catch(error => {
+          setErrorMessage(
+            `Virhe: ${error.response.data.error}`
+          )
+          setTimeout(() => {
+            setErrorMessage(null)
+          }, 4000)
+        })
     } else {
-      setErrorMessage(
-        `Virhe: nimi tai numero tyhjä!`
-      )
-      setTimeout(() => {
-        setErrorMessage(null)
-      }, 4000)
+      if (window.confirm(`${newName} on jo luettelossa, korvataanko vanha numero uudella?`)) {
+        updatePerson(persons.find(n => n.name === newName).id)
+      }
     }
   }
 
