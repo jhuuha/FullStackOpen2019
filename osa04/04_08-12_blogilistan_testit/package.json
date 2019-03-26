@@ -7,7 +7,7 @@
     "start": "cross-env NODE_ENV=production node index.js",
     "watch": "cross-env NODE_ENV=development nodemon index.js",
     "lint": "eslint .; exit 0",
-    "test": "cross-env NODE_ENV=test jest --verbose --runInBand"
+    "test": "cross-env NODE_ENV=test jest --verbose --runInBand; exit 0"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
