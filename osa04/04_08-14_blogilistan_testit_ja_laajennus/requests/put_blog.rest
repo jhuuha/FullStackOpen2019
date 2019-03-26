@@ -1,0 +1,9 @@
+PUT http://localhost:3003/api/blogs/5c9a9cc7164ffd5192000846
+Content-Type: application/json
+
+{
+    "title": "Otsikko 6",
+    "author": "BBBB",
+    "url": "http://testi123.testi3",
+    "likes": 0
+}

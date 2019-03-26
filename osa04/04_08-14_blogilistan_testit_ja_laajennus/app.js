@@ -8,6 +8,8 @@ const middleware = require('./utils/middleware')
 const mongoose = require('mongoose')
 const logger = require('./utils/logger')
 
+mongoose.set('useFindAndModify', false)
+
 const mongoUrl = config.MONGODB_URI
 mongoose.connect(mongoUrl, { useNewUrlParser: true })
     .then(() => {
