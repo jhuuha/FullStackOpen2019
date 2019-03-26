@@ -55,6 +55,23 @@ test('a valid blog can be added', async () => {
 })
 
 
+test('undefined likes must be zero', async () => {
+    const newBlog = {
+        title: 'Add new test',
+        author: 'Super Man',
+        url: 'https://fullstackopen-2019.github.io/osa4/backendin_testaaminen',
+    }
+    const response = await api
+        .post('/api/blogs')
+        .send(newBlog)
+        .expect(201)
+        .expect('Content-Type', /application\/json/)
+
+    const blogs = await Blog.find({ '_id': response.body.id })
+    expect(blogs[0].likes).toBeDefined()
+})
+
+
 afterAll(() => {
     mongoose.connection.close()
 })

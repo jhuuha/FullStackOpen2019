@@ -13,7 +13,8 @@ blogsRouter.get('/', async (request, response, next) => {
 
 blogsRouter.post('/', async (request, response, next) => {
     try {
-        const blog = new Blog(request.body)
+        const body = { ...request.body, likes: request.body.likes === undefined ? 0 : request.body.likes }
+        const blog = new Blog(body)
         const savedBlog = await blog.save()
         response.status(201).json(savedBlog.toJSON())
     } catch (exception) {
