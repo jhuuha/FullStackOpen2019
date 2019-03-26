@@ -14,6 +14,7 @@ beforeEach(async () => {
     await Promise.all(promiseArray)
 })
 
+
 test('blogs are returned as json', async () => {
     await api
         .get('/api/blogs')
@@ -21,10 +22,12 @@ test('blogs are returned as json', async () => {
         .expect('Content-Type', /application\/json/)
 })
 
+
 test('there are right amount of blogs', async () => {
     const response = await api.get('/api/blogs')
     expect(response.body.length).toBe(helper.initialBlogs.length)
 })
+
 
 test('identification names are id', async () => {
     const response = await api.get('/api/blogs')
@@ -32,6 +35,25 @@ test('identification names are id', async () => {
         expect(blog.id).toBeDefined()
     })
 })
+
+
+test('a valid blog can be added', async () => {
+    const newBlog = {
+        title: 'Add new test',
+        author: 'Super Man',
+        url: 'https://fullstackopen-2019.github.io/osa4/backendin_testaaminen',
+        likes: 0,
+    }
+    await api
+        .post('/api/blogs')
+        .send(newBlog)
+        .expect(201)
+        .expect('Content-Type', /application\/json/)
+
+    const blogsAtEnd = await helper.blogsInDb()
+    expect(blogsAtEnd.length).toBe(helper.initialBlogs.length + 1)
+})
+
 
 afterAll(() => {
     mongoose.connection.close()
