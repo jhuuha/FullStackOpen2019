@@ -33,7 +33,6 @@ const mostBlogs = (blogs) => {
     let most = { 'author': '', 'blogs': 0 }
     Object.values(authors).forEach(value => {
         arr = value
-        console.log(arr)
         if (arr.length > most.blogs) {
             most = { 'author': arr[0].author, 'blogs': arr.length }
         }
