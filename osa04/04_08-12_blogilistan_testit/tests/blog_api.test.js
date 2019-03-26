@@ -72,6 +72,32 @@ test('undefined likes must be zero', async () => {
 })
 
 
+test('if title is undefined status must be 400 (bad request)', async () => {
+    const newBlog = {
+        author: 'Super Man',
+        url: 'https://fullstackopen-2019.github.io/osa4/backendin_testaaminen',
+        likes: 0
+    }
+    await api
+        .post('/api/blogs')
+        .send(newBlog)
+        .expect(400)
+})
+
+
+test('if url is undefined status must be 400 (bad request)', async () => {
+    const newBlog = {
+        title: 'Add new test',
+        author: 'Super Man',
+        likes: 0
+    }
+    await api
+        .post('/api/blogs')
+        .send(newBlog)
+        .expect(400)
+})
+
+
 afterAll(() => {
     mongoose.connection.close()
 })
