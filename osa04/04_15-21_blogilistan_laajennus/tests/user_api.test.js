@@ -3,13 +3,20 @@ const supertest = require('supertest')
 const helper = require('./test_helper')
 const app = require('../app')
 const api = supertest(app)
+const bcrypt = require('bcrypt')
 const User = require('../models/user')
 
 describe('/api/users tests', () => {
 
     beforeEach(async () => {
         await User.deleteMany({})
-        const user = new User({ username: 'root', password: 'root123' })
+        const saltRounds = 10
+        const passwordHash = await bcrypt.hash('root123', saltRounds)
+        const user = new User({
+            username: 'root',
+            name: 'super user',
+            passwordHash
+        })
         await user.save()
     })
 
