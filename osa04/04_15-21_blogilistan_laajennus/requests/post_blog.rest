@@ -1,5 +1,6 @@
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3QiLCJpZCI6IjVjOWJiNjYyNDVhMGE2NWNkYmNjZjVmZCIsImlhdCI6MTU1MzcwOTI2MX0.hnDWMeORhfjjeTpkPNej3wV7Znq8HqdzYRS8_VcpNDw
 
 {
     "title": "Otsikko 3",
