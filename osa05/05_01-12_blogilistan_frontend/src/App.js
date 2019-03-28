@@ -200,6 +200,7 @@ const App = () => {
             blog={blog}
             handleLike={handleLike}
             handleRemove={handleRemove}
+            loggedUser={user.username}
           />
         )}
     </div>
