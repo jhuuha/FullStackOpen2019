@@ -102,6 +102,23 @@ const App = () => {
   }
 
 
+  const handleLike = async (blog) => {
+    try {
+      const newBlog = { ...blog, user: blog.user.id, likes: blog.likes + 1 }
+      delete newBlog.id
+      const returnedBlog = await blogService.update(blog.id, newBlog)
+      setBlogs(blogs.map(obj => obj.id !== blog.id ? obj : returnedBlog))
+    } catch (exception) {
+      setErrorMessage(
+        `Virhe: ${exception.response.data.error}`
+      )
+      setTimeout(() => {
+        setErrorMessage(null)
+      }, 4000)
+    }
+  }
+
+
   if (user === null) {
 
     return (
@@ -153,7 +170,7 @@ const App = () => {
         />
       </Togglable>
       {blogs.map(blog =>
-        <Blog key={blog.id} blog={blog} />
+        <Blog key={blog.id} blog={blog} handleLike={handleLike} />
       )}
     </div>
   )
