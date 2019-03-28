@@ -119,6 +119,29 @@ const App = () => {
   }
 
 
+  const handleRemove = async (blog) => {
+    try {
+      if (window.confirm(`remove blog ${blog.title} by ${blog.author}`)) {
+        await blogService.remove(blog.id)
+        setBlogs(blogs.filter(n => n.id !== blog.id))
+        setNotificationMessage(
+          `a blog ${blog.title} by ${blog.author} removed`
+        )
+        setTimeout(() => {
+          setNotificationMessage(null)
+        }, 2000)
+      }
+    } catch (exception) {
+      setErrorMessage(
+        `Virhe: ${exception.response.data.error}`
+      )
+      setTimeout(() => {
+        setErrorMessage(null)
+      }, 4000)
+    }
+  }
+
+
   if (user === null) {
 
     return (
@@ -172,7 +195,12 @@ const App = () => {
       {blogs
         .sort((a, b) => a.likes < b.likes ? 1 : -1)
         .map(blog =>
-          <Blog key={blog.id} blog={blog} handleLike={handleLike} />
+          <Blog
+            key={blog.id}
+            blog={blog}
+            handleLike={handleLike}
+            handleRemove={handleRemove}
+          />
         )}
     </div>
   )
