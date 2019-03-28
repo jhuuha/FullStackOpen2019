@@ -4,6 +4,7 @@ import blogService from './services/blogs'
 import loginService from './services/login'
 import CreateNewBlog from './components/CreateNewBlog'
 import Notification from './components/Notification'
+import Togglable from './components/Togglable'
 
 const App = () => {
 
@@ -19,6 +20,7 @@ const App = () => {
   const [author, setAuthor] = useState('')
   const [url, setUrl] = useState('')
 
+  const blogFormRef = React.createRef()
 
   useEffect(() => {
     blogService.getAll().then(blogs =>
@@ -70,6 +72,7 @@ const App = () => {
 
   const handleCreateNewBlog = async (event) => {
     event.preventDefault()
+    blogFormRef.current.toggleVisibility()
     try {
       const newBlog =
       {
@@ -138,15 +141,17 @@ const App = () => {
       <Notification message={errorMessage} color='red' />
       <p>{user.name} logged in</p>
       <button onClick={() => handleLogout()}>logout</button>
-      <CreateNewBlog
-        title={title}
-        author={author}
-        url={url}
-        handleTitleChange={({ target }) => setTitle(target.value)}
-        handleAuthorChange={({ target }) => setAuthor(target.value)}
-        handleUrlChange={({ target }) => setUrl(target.value)}
-        handleSubmit={handleCreateNewBlog}
-      />
+      <Togglable buttonLabel="create new" ref={blogFormRef}>
+        <CreateNewBlog
+          title={title}
+          author={author}
+          url={url}
+          handleTitleChange={({ target }) => setTitle(target.value)}
+          handleAuthorChange={({ target }) => setAuthor(target.value)}
+          handleUrlChange={({ target }) => setUrl(target.value)}
+          handleSubmit={handleCreateNewBlog}
+        />
+      </Togglable>
       {blogs.map(blog =>
         <Blog key={blog.id} blog={blog} />
       )}
