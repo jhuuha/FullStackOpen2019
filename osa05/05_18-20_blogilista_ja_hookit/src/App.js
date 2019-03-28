@@ -18,9 +18,9 @@ const App = () => {
     const [notificationMessage, setNotificationMessage] = useState(null)
     const [errorMessage, setErrorMessage] = useState(null)
 
-    const [title, setTitle] = useState('')
-    const [author, setAuthor] = useState('')
-    const [url, setUrl] = useState('')
+    const title = useField('text')
+    const author = useField('text')
+    const url = useField('text')
 
     const blogFormRef = React.createRef()
 
@@ -78,15 +78,15 @@ const App = () => {
         try {
             const newBlog =
             {
-                title,
-                author,
-                url
+                title: title.value,
+                author: author.value,
+                url: url.value
             }
             const returnedBlog = await blogService.create(newBlog)
             setBlogs(blogs.concat(returnedBlog))
-            setTitle('')
-            setAuthor('')
-            setUrl('')
+            title.reset()
+            author.reset()
+            url.reset()
             setNotificationMessage(
                 `a new blog ${returnedBlog.title} by ${returnedBlog.author} added`
             )
@@ -178,9 +178,6 @@ const App = () => {
                     title={title}
                     author={author}
                     url={url}
-                    handleTitleChange={({ target }) => setTitle(target.value)}
-                    handleAuthorChange={({ target }) => setAuthor(target.value)}
-                    handleUrlChange={({ target }) => setUrl(target.value)}
                     handleSubmit={handleCreateNewBlog}
                 />
             </Togglable>

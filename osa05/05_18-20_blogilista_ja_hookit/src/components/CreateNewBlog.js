@@ -1,11 +1,7 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 const CreateNewBlog = ({
     handleSubmit,
-    handleTitleChange,
-    handleAuthorChange,
-    handleUrlChange,
     title,
     author,
     url
@@ -17,40 +13,20 @@ const CreateNewBlog = ({
             <form onSubmit={handleSubmit}>
                 <div>
                     title
-                    <input
-                        value={title}
-                        onChange={handleTitleChange}
-                    />
+                    <input {...title.bind} />
                 </div>
                 <div>
                     author
-                    <input
-                        value={author}
-                        onChange={handleAuthorChange}
-                    />
+                    <input {...author.bind} />
                 </div>
                 <div>
                     url
-                    <input
-                        value={url}
-                        onChange={handleUrlChange}
-                    />
+                    <input {...url.bind} />
                 </div>
                 <button type="submit">create</button>
             </form>
         </div >
     )
-}
-
-CreateNewBlog.propTypes = {
-
-    handleSubmit: PropTypes.func.isRequired,
-    handleTitleChange: PropTypes.func.isRequired,
-    handleAuthorChange: PropTypes.func.isRequired,
-    handleUrlChange: PropTypes.func.isRequired,
-    title: PropTypes.string.isRequired,
-    author: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired
 }
 
 export default CreateNewBlog
