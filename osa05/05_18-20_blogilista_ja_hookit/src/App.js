@@ -52,6 +52,8 @@ const App = () => {
             )
             blogService.setToken(user.token)
             setUser(user)
+            username.reset()
+            password.reset()
         } catch (exception) {
             setErrorMessage(
                 `Virhe: ${exception.response.data.error}`
@@ -152,11 +154,11 @@ const App = () => {
                 <form onSubmit={handleLogin}>
                     <div>
                         käyttäjätunnus
-                        <input {...username} />
+                        <input {...username.bind} />
                     </div>
                     <div>
                         salasana
-                        <input {...password} />
+                        <input {...password.bind} />
                     </div>
                     <button type="submit">kirjaudu</button>
                 </form>
