@@ -1,6 +1,6 @@
 const blogs = [
     {
-        title: 'testi',
+        title: 'Testi',
         author: 'Simo',
         url: 'http://testi.fi',
         user: {

@@ -30,8 +30,8 @@ describe('<App />', () => {
         const elementLogin = component.getByText('kirjaudu')
         expect(elementLogin).toBeDefined()
 
-        expect(component.container).not.toHaveTextContent('Blogs')
-        expect(component.container).not.toHaveTextContent('testi')
-        expect(component.container).not.toHaveTextContent('testi2')
+        expect(component.container).not.toHaveTextContent('blogs')
+        expect(component.container).not.toHaveTextContent('Testi Timo')
+        expect(component.container).not.toHaveTextContent('Testi2 Simo')
     })
 })
