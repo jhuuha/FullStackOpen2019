@@ -20,7 +20,7 @@ const Notification = ({ message, color }) => {
         <div style={notificationStyle}>
             {message}
         </div>
-    );
-};
+    )
+}
 
 export default Notification
