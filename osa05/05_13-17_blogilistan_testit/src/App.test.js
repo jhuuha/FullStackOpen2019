@@ -31,7 +31,7 @@ describe('<App />', () => {
         expect(elementLogin).toBeDefined()
 
         expect(component.container).not.toHaveTextContent('blogs')
-        expect(component.container).not.toHaveTextContent('Testi Timo')
-        expect(component.container).not.toHaveTextContent('Testi2 Simo')
+        expect(component.container).not.toHaveTextContent('Testi Simo')
+        expect(component.container).not.toHaveTextContent('Testi2 Timo')
     })
 })
