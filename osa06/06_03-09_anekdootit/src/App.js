@@ -1,5 +1,8 @@
 import React from 'react';
 
+const generateId = () =>
+  Number((Math.random() * 1000000).toFixed(0))
+
 const App = (props) => {
   const anecdotes = props.store.getState()
 
@@ -9,6 +12,19 @@ const App = (props) => {
       type: 'VOTE',
       id
     })
+  }
+
+  const addAnecdote = (event) => {
+    event.preventDefault()
+    props.store.dispatch({
+      type: 'NEW_ANECDOTE',
+      data: {
+        content: event.target.content.value,
+        votes: 0,
+        id: generateId()
+      }
+    })
+    event.target.content.value = ''
   }
 
   return (
@@ -26,9 +42,9 @@ const App = (props) => {
         </div>
       )}
       <h2>create new</h2>
-      <form>
-        <div><input /></div>
-        <button>create</button>
+      <form onSubmit={addAnecdote}>
+        <div><input name="content" /></div>
+        <button type="submit">create</button>
       </form>
     </div>
   )
