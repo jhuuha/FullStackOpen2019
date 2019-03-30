@@ -1,29 +1,21 @@
 import React from 'react';
-
-const generateId = () =>
-  Number((Math.random() * 1000000).toFixed(0))
+import { incVoteOf, createAnecdote } from './reducers/anecdoteReducer'
 
 const App = (props) => {
   const anecdotes = props.store.getState()
 
   const vote = (id) => {
     console.log('vote', id)
-    props.store.dispatch({
-      type: 'VOTE',
-      id
-    })
+    props.store.dispatch(
+      incVoteOf(id)
+    )
   }
 
   const addAnecdote = (event) => {
     event.preventDefault()
-    props.store.dispatch({
-      type: 'NEW_ANECDOTE',
-      data: {
-        content: event.target.content.value,
-        votes: 0,
-        id: generateId()
-      }
-    })
+    props.store.dispatch(
+      createAnecdote(event.target.content.value)
+    )
     event.target.content.value = ''
   }
 
