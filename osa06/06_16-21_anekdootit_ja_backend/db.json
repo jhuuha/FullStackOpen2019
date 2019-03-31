@@ -3,7 +3,7 @@
     {
       "content": "If it hurts, do it more often",
       "id": "47145",
-      "votes": 0
+      "votes": 3
     },
     {
       "content": "Adding manpower to a late software project makes it later!",
@@ -52,13 +52,28 @@
     },
     {
       "content": "Testi 5",
-      "votes": 0,
+      "votes": 3,
       "id": "d7ucrTE"
     },
     {
       "content": "Testi 6",
-      "votes": 0,
+      "votes": 3,
       "id": "yaa-1wn"
+    },
+    {
+      "content": "Testi 7",
+      "votes": 17,
+      "id": "8d1mgcb"
+    },
+    {
+      "content": "Testi 8",
+      "votes": 0,
+      "id": "Nl1NY3a"
+    },
+    {
+      "content": "Testi 9",
+      "votes": 19,
+      "id": "k4vLwWj"
     }
   ]
 }
