@@ -9,6 +9,7 @@ const AnecdoteForm = (props) => {
     const addAnecdote = async (event) => {
         event.preventDefault()
         const content = event.target.content.value
+        event.target.content.value = ''
         const newAnecdote = await anecdoteService.createNew(content)
         props.createAnecdote(newAnecdote)
         props.showNotification(`you created ${content}`)
