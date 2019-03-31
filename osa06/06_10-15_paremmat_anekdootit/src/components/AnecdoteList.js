@@ -1,17 +1,18 @@
 import React from 'react'
-import { incVoteOf } from '../reducers/anecdoteReducer'
-import { showNotification, hideNotification } from '../reducers/notificationReducer'
+import { connect } from 'react-redux'
+//import { incVoteOf } from '../reducers/anecdoteReducer'
+//import { showNotification, hideNotification } from '../reducers/notificationReducer'
 
 const AnecdoteList = (props) => {
 
-    const anecdotes = props.store.getState().anecdotes
-    const filter = props.store.getState().filter
+    const anecdotes = props.anecdotes
+    const filter = props.filter
 
     const vote = (anecdote) => {
         console.log('vote', anecdote.id)
-        props.store.dispatch(incVoteOf(anecdote.id))
-        props.store.dispatch(showNotification(`you voted ${anecdote.content}`))
-        setTimeout(() => { props.store.dispatch(hideNotification()) }, 5000)
+        //props.store.dispatch(incVoteOf(anecdote.id))
+        //props.store.dispatch(showNotification(`you voted ${anecdote.content}`))
+        //setTimeout(() => { props.store.dispatch(hideNotification()) }, 5000)
     }
 
     return (
@@ -34,4 +35,15 @@ const AnecdoteList = (props) => {
     )
 }
 
-export default AnecdoteList
+const mapStateToProps = (state) => {
+    // joskus on hyödyllistä tulostaa mapStateToProps:ista...
+    console.log(state)
+    return {
+        anecdotes: state.anecdotes,
+        filter: state.filter
+    }
+}
+
+export default connect(
+    mapStateToProps
+)(AnecdoteList)
