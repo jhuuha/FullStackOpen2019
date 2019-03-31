@@ -8,9 +8,9 @@ const App = (props) => {
   return (
     <div>
       <h2>Anecdotes</h2>
-      <Filter store={props.store} />
+      <Filter />
       <Notification store={props.store} />
-      <AnecdoteForm store={props.store} />
+      <AnecdoteForm />
       <AnecdoteList />
     </div>
   )
