@@ -5,9 +5,6 @@ import { showNotification, hideNotification } from '../reducers/notificationRedu
 
 const AnecdoteList = (props) => {
 
-    const anecdotes = props.anecdotes
-    const filter = props.filter
-
     const vote = (anecdote) => {
         console.log('vote', anecdote.id)
         props.incVoteOf(anecdote.id)
@@ -18,29 +15,30 @@ const AnecdoteList = (props) => {
     return (
         <div>
             <br />
-            {anecdotes
-                .filter(anecdote => anecdote.content.toLowerCase().includes(filter.toLowerCase()))
-                .map(anecdote =>
-                    <div key={anecdote.id}>
-                        <div>
-                            {anecdote.content}
-                        </div>
-                        <div>
-                            has {anecdote.votes}
-                            <button onClick={() => vote(anecdote)}>vote</button>
-                        </div>
+            {props.anecdotesToShow.map(anecdote =>
+                <div key={anecdote.id}>
+                    <div>
+                        {anecdote.content}
                     </div>
-                )}
+                    <div>
+                        has {anecdote.votes}
+                        <button onClick={() => vote(anecdote)}>vote</button>
+                    </div>
+                </div>
+            )}
         </div>
     )
+}
+
+const anecdotesToShow = ({ anecdotes, filter }) => {
+    return anecdotes.filter(anecdote => anecdote.content.toLowerCase().includes(filter.toLowerCase()))
 }
 
 const mapStateToProps = (state) => {
     // joskus on hyödyllistä tulostaa mapStateToProps:ista...
     console.log(state)
     return {
-        anecdotes: state.anecdotes,
-        filter: state.filter
+        anecdotesToShow: anecdotesToShow(state),
     }
 }
 
