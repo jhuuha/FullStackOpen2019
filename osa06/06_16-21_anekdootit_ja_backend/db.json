@@ -62,7 +62,7 @@
     },
     {
       "content": "Testi 7",
-      "votes": 17,
+      "votes": 29,
       "id": "8d1mgcb"
     },
     {
@@ -72,8 +72,13 @@
     },
     {
       "content": "Testi 9",
-      "votes": 19,
+      "votes": 43,
       "id": "k4vLwWj"
+    },
+    {
+      "content": "Last Test",
+      "votes": 0,
+      "id": "7Svj0TS"
     }
   ]
 }
